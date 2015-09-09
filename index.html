@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cat Clicker</title>
+</head>
+<body>
+    <!-- List of cat links -->
+    <ul data-bind="foreach: catList" id="cat-list">
+        <li><a data-bind="text: name, click: $parent.setCurrentCat" href="#"></a></li>
+    </ul>
+    
+    <!-- Set up a context using the "with" binding -->
+    <div data-bind="with: currentCat" id="cat">
+
+        <!-- Bind the name -->
+        <h2 data-bind="text: name" id="cat-name"></h2>
+        
+        <!-- The cat's level: Newborn, Infant, etc -->
+        <p data-bind="text: level"></p>
+
+        <!-- bind the clickCount -->
+        <div data-bind="text: clickCount" id="cat-count"></div>
+
+        <!-- Bind the img source and click fn -->
+        <!-- Get the $parent context for the "on click" fn -->
+        <img id="cat-img" src="" alt="cute cat" 
+        data-bind="click: $parent.incrementCounter, attr: {src: imgSrc}">
+
+        <p>Nicknames: </p>
+        <!-- Use a foreach construct in the ul,
+        pointing to the array -->
+        <ul data-bind="foreach: nicknames">
+            <li data-bind="text: $data"></li>
+        </ul>
+
+    </div>
+    <script src="js/lib/knockout-3.2.0.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
